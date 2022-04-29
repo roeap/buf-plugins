@@ -1,0 +1,13 @@
+{
+  "name": "ts-proto",
+  "version": "0.1.0",
+  "description": "buf plugin for ts-proto",
+  "main": "index.js",
+  "repository": "https://github.com/roeap/buf-plugins",
+  "author": "Robert Pack",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "ts-proto": "^1.110.4"
+  }
+}
