@@ -17,9 +17,10 @@ Based on the [python-betterproto](https://github.com/danielgtaylor/python-better
 ```yaml
 version: v1
 plugins:
-  - remote: buf.build/mlfusion/plugins/ts-proto:v1.110.4-1
+  - remote: buf.build/robstar/plugins/ts-proto:v1.125.0
     out: gen/ts
-  - remote: buf.build/mlfusion/plugins/python-betterproto:v2.0.0-2
+  - remote: buf.build/robstar/plugins/python-betterproto:v2.0.0-1
     out: gen/python
-
+  - remote: buf.build/robstar/plugins/jsonschema:v1.3.9
+    out: gen/jsonschema
 ```
