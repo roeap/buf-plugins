@@ -8,6 +8,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "ts-proto": "^1.110.4"
+    "ts-proto": "^1.125.0"
   }
 }
