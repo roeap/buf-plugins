@@ -1,50 +1,50 @@
 repository := "robstar"
 
+# plugin names must match folder names in plugins/ folder
+gql_plugin_name := "protoc-gen-graphql"
+jsonschema_plugin_name := "jsonschema"
+betterproto_plugin_name := "python-betterproto"
+
+_create_bsr_plugin name:
+    @echo "creating {{name}} plugin"
+    buf beta registry plugin create buf.build/{{repository}}/plugins/{{name}} --visibility public
+
+_build_docker name version:
+    @echo "building {{name}} plugin {{version}}…'"
+    docker build \
+        -f plugins/{{name}}/Dockerfile \
+        -t plugins.buf.build/{{repository}}/{{name}}:{{version}} \
+        --build-arg PLUGIN_VERSION={{version}} \
+        plugins/{{name}}/
+
+_publish_plugin_to_bsr name version:
+    @echo "publishing {{name}} plugin {{version}}…'"
+    just _build_docker {{name}} {{version}}
+    docker push plugins.buf.build/{{repository}}/{{name}}:{{version}}
+
 create-jsonschema:
-    @echo "creating jsonschema plugin"
-    buf beta registry plugin create buf.build/{{repository}}/plugins/jsonschema --visibility public
+    just _create_bsr_plugin {{jsonschema_plugin_name}}
 
 build-jsonschema version:
-    @echo "building jsonschema plugin {{version}}…'"
-    docker build \
-        -f jsonschema/Dockerfile \
-        -t plugins.buf.build/{{repository}}/jsonschema:{{version}} \
-        --build-arg PLUGIN_VERSION={{version}} \
-        jsonschema/
+    just _build_docker {{jsonschema_plugin_name}} {{version}}
 
 publish-jsonschema version:
-    @echo "publishing jsonschema plugin {{version}}…'"
-    just build-jsonschema {{version}}
-    docker push plugins.buf.build/{{repository}}/jsonschema:{{version}}
+    just _publish_plugin_to_bsr {{jsonschema_plugin_name}} {{version}}
 
 create-betterproto:
-    @echo "creating betterproto plugin"
-    buf beta registry plugin create buf.build/{{repository}}/plugins/python-betterproto --visibility public
+    just _create_bsr_plugin {{betterproto_plugin_name}}
 
 build-betterproto version:
-    @echo "building betterproto plugin {{version}}…'"
-    docker build \
-        -f python-betterproto/Dockerfile \
-        -t plugins.buf.build/{{repository}}/python-betterproto:{{version}} \
-        python-betterproto/
+    just _build_docker {{betterproto_plugin_name}} {{version}}
 
 publish-betterproto version:
-    @echo "publishing betterproto plugin {{version}}…'"
-    just build-betterproto {{version}}
-    docker push plugins.buf.build/{{repository}}/python-betterproto:{{version}}
+    just _publish_plugin_to_bsr {{betterproto_plugin_name}} {{version}}
 
-create-ts-proto:
-    @echo "creating ts-proto plugin"
-    buf beta registry plugin create buf.build/{{repository}}/plugins/ts-proto --visibility public
+create-graphql:
+    just _create_bsr_plugin {{gql_plugin_name}}
 
-build-ts-proto version:
-    @echo "building ts-proto plugin {{version}}…'"
-    docker build \
-        -f ts-proto/Dockerfile \
-        -t plugins.buf.build/{{repository}}/ts-proto:{{version}} \
-        ts-proto/
+build-graphql version:
+    just _build_docker {{gql_plugin_name}} {{version}}
 
-publish-ts-proto version:
-    @echo "publishing ts-proto plugin {{version}}…'"
-    just build-ts-proto {{version}}
-    docker push plugins.buf.build/{{repository}}/ts-proto:{{version}}
+publish-graphql version:
+    just _publish_plugin_to_bsr {{gql_plugin_name}} {{version}}

@@ -1,3 +1,4 @@
+ARG PLUGIN_VERSION
 FROM python:3.10-slim
 
 COPY pyproject.toml poetry.lock /opt/plugin/

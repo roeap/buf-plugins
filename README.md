@@ -1,12 +1,9 @@
 # buf-plugins
 
-Plugins for remote generation of protobuf code with the [buf schema registry](https://buf.build/).
+This repository contains some useful (at least for me :)) modules and plugins for use with
+the [buf schema registry](https://buf.build).
+
 An example setup can be found in the `example` folder.
-
-## ts-proto
-
-Based on the [ts-proto](https://github.com/stephenh/ts-proto) plugin.
-See the [repo](https://github.com/stephenh/ts-proto#supported-options) for available options.
 
 ## python-beterproto
 
@@ -17,10 +14,10 @@ Based on the [python-betterproto](https://github.com/danielgtaylor/python-better
 ```yaml
 version: v1
 plugins:
-  - remote: buf.build/robstar/plugins/ts-proto:v1.125.0
-    out: gen/ts
   - remote: buf.build/robstar/plugins/python-betterproto:v2.0.0-1
     out: gen/python
   - remote: buf.build/robstar/plugins/jsonschema:v1.3.9
     out: gen/jsonschema
 ```
+
+buf beta registry repository create buf.build/robstar/jsonschema_options --visibility public
