@@ -1,7 +1,7 @@
 repository := "robstar"
 
 # plugin names must match folder names in plugins/ folder
-gql_plugin_name := "protoc-gen-graphql"
+gql_plugin_name := "graphql"
 jsonschema_plugin_name := "jsonschema"
 betterproto_plugin_name := "python-betterproto"
 
