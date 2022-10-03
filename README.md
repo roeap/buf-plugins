@@ -26,6 +26,6 @@ plugins:
     out: gen/python
   - remote: buf.build/robstar/plugins/jsonschema:v1.3.9
     out: gen/jsonschema
-  - remote: buf.build/robstar/plugins/protoc-gen-graphql:v0.1
+  - remote: buf.build/robstar/plugins/graphql:v0.1
     out: gen/graphql
 ```
