@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/mlfusion/scalapb
+name: buf.build/robstar/scalapb
 lint:
   use:
     - DEFAULT
